@@ -22,16 +22,16 @@ DRIVE_FILE_ID = "1OLL19HAOMOwTjwVzU-TefC7ECz3msm4P"
 
 app = FastAPI()
 
-# --- NEW: DOWNLOADER FUNCTION ---
+# DOWNLOADER FUNCTION 
 def download_model_if_missing():
     if not os.path.exists(MODEL_PATH):
-        print("📥 Model not found. Downloading from Google Drive...")
+        print("Model not found. Downloading from Google Drive...")
         try:
             url = f'https://drive.google.com/uc?id={DRIVE_FILE_ID}'
             gdown.download(url, MODEL_PATH, quiet=False)
-            print("✅ Download complete!")
+            print("Download complete!")
         except Exception as e:
-            print(f"❌ Failed to download model: {e}")
+            print(f"Failed to download model: {e}")
 
 # 2. BUILD MODEL & LOAD WEIGHTS
 def build_pro_model():
@@ -51,7 +51,7 @@ def build_pro_model():
 
 print("Loading Model...")
 try:
-    # --- NEW: CHECK AND DOWNLOAD BEFORE LOADING ---
+    # CHECK AND DOWNLOAD BEFORE LOADING 
     download_model_if_missing()
     
     model = build_pro_model()
