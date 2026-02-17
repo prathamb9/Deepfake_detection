@@ -5,7 +5,7 @@ import os
 import cv2
 import numpy as np
 import tensorflow as tf
-import gdown  # <--- NEW IMPORT
+import gdown  
 
 # 1. USE LEGACY KERAS
 import tf_keras as keras
