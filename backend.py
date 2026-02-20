@@ -5,7 +5,7 @@ import os
 import cv2
 import numpy as np
 import tensorflow as tf
-import gdown  # <--- NEW IMPORT
+import gdown  
 
 # 1. USE LEGACY KERAS
 import tf_keras as keras
@@ -21,10 +21,10 @@ DRIVE_FILE_ID = "1OLL19HAOMOwTjwVzU-TefC7ECz3msm4P"
 
 app = FastAPI()
 
-# --- NEW: DOWNLOADER FUNCTION ---
+# DOWNLOADER FUNCTION 
 def download_model_if_missing():
     if not os.path.exists(MODEL_PATH):
-        print("📥 Model not found. Downloading from Google Drive...")
+        print("Model not found. Downloading from Google Drive...")
         try:
             url = f'https://drive.google.com/uc?id={DRIVE_FILE_ID}'
             gdown.download(url, MODEL_PATH, quiet=False)
@@ -50,6 +50,7 @@ def build_pro_model():
 
 print("Loading Model...")
 try:
+    # CHECK AND DOWNLOAD BEFORE LOADING 
     download_model_if_missing()
     
     model = build_pro_model()
