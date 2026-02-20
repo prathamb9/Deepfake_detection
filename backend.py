@@ -17,7 +17,6 @@ MODEL_PATH = "deepfake_model.h5"
 IMG_SIZE = 224
 SEQ_LENGTH = 10 
 
-# 🔴 PASTE YOUR GOOGLE DRIVE FILE ID HERE 🔴
 DRIVE_FILE_ID = "1OLL19HAOMOwTjwVzU-TefC7ECz3msm4P" 
 
 app = FastAPI()
@@ -29,9 +28,9 @@ def download_model_if_missing():
         try:
             url = f'https://drive.google.com/uc?id={DRIVE_FILE_ID}'
             gdown.download(url, MODEL_PATH, quiet=False)
-            print("✅ Download complete!")
+            print("Download complete!")
         except Exception as e:
-            print(f"❌ Failed to download model: {e}")
+            print(f"Failed to download model: {e}")
 
 # 2. BUILD MODEL & LOAD WEIGHTS
 def build_pro_model():
@@ -51,7 +50,6 @@ def build_pro_model():
 
 print("Loading Model...")
 try:
-    # --- NEW: CHECK AND DOWNLOAD BEFORE LOADING ---
     download_model_if_missing()
     
     model = build_pro_model()
